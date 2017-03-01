@@ -215,7 +215,7 @@ exports.decorateHyper = (Hyper, { React }) => {
 
             return (
                 React.createElement(Hyper, Object.assign({}, this.props, {
-                    customChildren: React.createElement('footer', { className: 'footer_footer' },
+                    customChildren: (this.props.customChildren instanceof Array? this.props.customChildren : [this.props.customChildren]).concat(React.createElement('footer', { className: 'footer_footer' },
                         React.createElement('div', { title: this.state.folder, className: `item_item item_folder${hasFolder}`, onClick: this.handleClick }, this.state.folder ? tildify(String(this.state.folder)) : ''),
                         React.createElement('div', { title: this.state.remote, className: `item_item item_branch${hasBranch}${hasRemote}`, onClick: this.handleClick },
                             React.createElement('span', { className: 'item_text' }, this.state.branch),
@@ -223,7 +223,7 @@ exports.decorateHyper = (Hyper, { React }) => {
                             React.createElement('i', { title: 'git-push', className: `item_icon icon_push${hasPush}` }),
                             React.createElement('i', { title: 'git-pull', className: `item_icon icon_pull${hasPull}` })
                         )
-                    )
+                    ))
                 }))
             )
         }
